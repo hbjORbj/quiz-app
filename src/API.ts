@@ -26,7 +26,10 @@ export const fetchQuestions = async (
   return data.results.map((question: Question) => {
     return {
       ...question,
-      answers: [...question.incorrect_answers, question.correct_answer],
+      answers: shuffleArray([
+        ...question.incorrect_answers,
+        question.correct_answer,
+      ]),
     };
   });
 };
