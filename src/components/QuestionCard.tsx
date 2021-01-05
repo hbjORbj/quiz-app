@@ -19,28 +19,30 @@ const QuestionCard: React.FC<Props> = ({
   totalQuestions,
   callback,
 }) => (
-  <Wrapper>
-    <p>
-      Question: {questionNumber} / {totalQuestions} <br />
-    </p>
-    <p dangerouslySetInnerHTML={{ __html: question }}></p>
-    <div>
-      {answers.map((answer) => (
-        <ButtonWrapper
-          isCorrect={userAnswer?.correctAnswer === answer}
-          userClicked={userAnswer?.answer === answer}
-        >
-          <button
-            disabled={userAnswer ? true : false}
-            value={answer}
-            onClick={callback}
+  <div>
+    <Wrapper>
+      <p>
+        Question: {questionNumber} / {totalQuestions}
+      </p>
+      <p dangerouslySetInnerHTML={{ __html: question }} />
+      <div>
+        {answers.map((answer) => (
+          <ButtonWrapper
+            isCorrect={userAnswer?.correctAnswer === answer}
+            userClicked={userAnswer?.answer === answer}
           >
-            <span dangerouslySetInnerHTML={{ __html: answer }} />
-          </button>
-        </ButtonWrapper>
-      ))}
-    </div>
-  </Wrapper>
+            <button
+              disabled={userAnswer ? true : false}
+              value={answer}
+              onClick={callback}
+            >
+              <span dangerouslySetInnerHTML={{ __html: answer }} />
+            </button>
+          </ButtonWrapper>
+        ))}
+      </div>
+    </Wrapper>
+  </div>
 );
 
 export default QuestionCard;

@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
   const handleCheckAnswer = (e: any) => {
     if (isGameOn) {
-      const answer = e.target.value;
+      const answer = e.currentTarget.value;
       const isCorrect = questions[index].correct_answer === answer;
       if (isCorrect) setScore((prev) => prev + 1);
       const answerObject = {
@@ -59,15 +59,19 @@ const App: React.FC = () => {
     <div>
       <GlobalStyle />
       <Wrapper>
-        <h1>Random Quiz Time!</h1>
+        <h1>Random Quiz Time !</h1>
         {!isGameOn ? (
-          <button className="start" onClick={handleStart}>
+          <button className="btn" onClick={handleStart}>
             Start
           </button>
         ) : null}
 
         {isGameOn ? <p>Score: {score}</p> : null}
-        {loading ? <p>Loading Questions...</p> : null}
+        {loading ? (
+          <div className="loading">
+            <h2>Loading Questions...</h2>
+          </div>
+        ) : null}
         {!loading && isGameOn && (
           <QuestionCard
             questionNumber={index + 1}
@@ -83,7 +87,7 @@ const App: React.FC = () => {
         !loading &&
         userAnswers.length === index + 1 &&
         index !== TOTAL_QUESTIONS - 1 ? (
-          <button className="next" onClick={handleNextQuestion}>
+          <button className="btn" onClick={handleNextQuestion}>
             Next Question
           </button>
         ) : null}
