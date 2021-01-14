@@ -25,7 +25,11 @@ export const Wrapper = styled.div`
   align-items: center;
   h1 {
     font-weight: 400;
+    font-size: 33px;
     text-align: center;
+  }
+  p {
+    font-size: 20px;
   }
   .btn {
     font-size: 1rem;
